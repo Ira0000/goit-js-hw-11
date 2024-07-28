@@ -58,6 +58,7 @@ function renderPhotoes(photos, searchField, imgList) {
       captionDelay: 250,
     });
     gallery.on('show.simplelightbox', function () {});
+    gallery.refresh();
   }
 }
 
