@@ -1,33 +1,21 @@
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
-
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-function renderPhotoes(photos, searchField, imgList) {
+let gallery = new SimpleLightbox('.img-list a', {
+  captions: true,
+  captionSelector: 'img',
+  captionType: 'attr',
+  captionsData: 'alt',
+  captionPosition: 'bottom',
+  captionDelay: 250,
+});
+
+function renderPhotoes(photos, imgList) {
   imgList.innerHTML = '';
-  const loader = document.querySelector('.loader');
 
-  if (photos.total === 0 || searchField.value === '') {
-    imgList.innerHTML = '';
-    iziToast.error({
-      message:
-        'Sorry, there are no images matching your search query. Please try again!',
-      position: 'topRight',
-      backgroundColor: '#EF4040',
-      messageColor: '#fff',
-      iconColor: '#fff',
-      icon: 'fa-regular fa-circle-xmark',
-      progressBarColor: '#B51B1B',
-      maxWidth: 432,
-      messageSize: '16',
-    });
-
-    loader.remove();
-  } else {
-    const markup = photos.hits
-      .map(photo => {
-        return `<li class="gallery-item">
+  const markup = photos.hits
+    .map(photo => {
+      return `<li class="gallery-item">
             <a class="gallery-link" href="${photo.largeImageURL}">
             <img
             class="gallery-img"
@@ -42,24 +30,13 @@ function renderPhotoes(photos, searchField, imgList) {
               <p class="description-text">Downloads <span class="description-value"> ${photo.downloads}</span></p>
             </div>
               </li>`;
-      })
-      .join('');
-    // console.log(markup);
-    imgList.insertAdjacentHTML('afterbegin', markup);
+    })
+    .join('');
 
-    loader.remove();
+  imgList.insertAdjacentHTML('afterbegin', markup);
 
-    let gallery = new SimpleLightbox('.img-list a', {
-      captions: true,
-      captionSelector: 'img',
-      captionType: 'attr',
-      captionsData: 'alt',
-      captionPosition: 'bottom',
-      captionDelay: 250,
-    });
-    gallery.on('show.simplelightbox', function () {});
-    gallery.refresh();
-  }
+  gallery.on('show.simplelightbox', function () {});
+  gallery.refresh();
 }
 
 export default renderPhotoes;

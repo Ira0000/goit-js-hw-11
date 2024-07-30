@@ -82,6 +82,11 @@
   background-color: #6c8cff;
 }
 
+.search-btn-disabled {
+  background-color: #cfcfcf;
+  color: #989898;
+}
+
 .img-section {
   display: flex;
   flex-direction: column;
