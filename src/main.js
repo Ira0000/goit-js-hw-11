@@ -9,12 +9,10 @@ const searchField = document.querySelector('.search-input');
 const imgList = document.querySelector('.img-list');
 const photoesContainer = document.querySelector('.img-section');
 
-const fetchImagesBtn = searchForm.addEventListener('click', event => {
+searchForm.addEventListener('submit', event => {
   event.preventDefault();
   imgList.innerHTML = '';
-  if (event.target.className !== 'search-btn') {
-    rerturn;
-  }
+
   const downloadStatus = '<div class="loader"></div>';
   photoesContainer.insertAdjacentHTML('afterbegin', downloadStatus);
 
