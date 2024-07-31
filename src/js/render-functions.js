@@ -11,7 +11,7 @@ let gallery = new SimpleLightbox('.img-list a', {
 });
 
 function renderPhotoes(photos, imgList) {
-  imgList.innerHTML = '';
+  // imgList.innerHTML = '';
 
   const markup = photos.hits
     .map(photo => {
